@@ -23,4 +23,5 @@ package org.osgl.logging;
  * A short alias to LogManager
  */
 public final class L extends LogManager {
+    private L() {}
 }
