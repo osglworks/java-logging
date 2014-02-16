@@ -34,9 +34,11 @@ public class JDKLogService implements LogService {
 
     private static final long serialVersionUID = 1L;
     protected final java.util.logging.Logger logger;
+    protected final String cname;
 
     public JDKLogService(Class c) {
-        logger = java.util.logging.Logger.getLogger(c.getName());
+        cname = c.getName();
+        logger = java.util.logging.Logger.getLogger(cname);
     }
 
     @Override
@@ -125,11 +127,25 @@ public class JDKLogService implements LogService {
     }
 
     protected void log(Level l, Throwable t, String m) {
-        logger.log(l, m, t);
+        Throwable dummyException = new Throwable();
+        StackTraceElement locations[] = dummyException.getStackTrace();
+        String method = "unknown";
+        if( locations != null && locations.length > 4 ) {
+            StackTraceElement caller = locations[4];
+            method = caller.getMethodName();
+        }
+        logger.logp(l, cname, method, m, t);
     }
 
     protected void log(Level l, String m) {
-        logger.log(l, m);
+        Throwable dummyException = new Throwable();
+        StackTraceElement locations[] = dummyException.getStackTrace();
+        String method = "unknown";
+        if( locations != null && locations.length > 6 ) {
+            StackTraceElement caller = locations[6];
+            method = caller.getMethodName();
+        }
+        logger.logp(l, cname, method, m);
     }
 
     public static class Factory implements LogServiceProvider {
