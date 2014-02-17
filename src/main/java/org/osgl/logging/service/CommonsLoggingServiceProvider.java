@@ -8,7 +8,7 @@ import org.osgl.logging.LogServiceProvider;
  */
 public class CommonsLoggingServiceProvider implements LogServiceProvider {
     @Override
-    public LogService getLogService(Class<?> clazz) {
-        return new CommonsLoggingService(clazz);
+    public LogService getLogService(String name) {
+        return new CommonsLoggingService(name);
     }
 }

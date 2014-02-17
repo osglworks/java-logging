@@ -15,6 +15,10 @@ public class Log4jService implements LogService {
         logger = Logger.getLogger(clz);
     }
 
+    public Log4jService(String name) {
+        this.logger = Logger.getLogger(name);
+    }
+
     @Override
     public boolean isTraceEnabled() {
         return logger.isTraceEnabled();

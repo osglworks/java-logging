@@ -15,6 +15,10 @@ public class TinyLogService implements LogService {
         level = Logger.getLoggingLevel(clz.getName()).ordinal();
     }
 
+    public TinyLogService(String name) {
+        level = Logger.getLoggingLevel(name).ordinal();
+    }
+
     @Override
     public boolean isTraceEnabled() {
         return level <= LoggingLevel.TRACE.ordinal();

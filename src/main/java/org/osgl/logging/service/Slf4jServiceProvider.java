@@ -8,7 +8,7 @@ import org.osgl.logging.LogServiceProvider;
  */
 public class Slf4jServiceProvider implements LogServiceProvider {
     @Override
-    public LogService getLogService(Class<?> clazz) {
-        return new Slf4jService(clazz);
+    public LogService getLogService(String name) {
+        return new Slf4jService(name);
     }
 }

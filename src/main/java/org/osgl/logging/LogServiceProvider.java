@@ -26,9 +26,9 @@ import java.io.Serializable;
  */
 public interface LogServiceProvider extends Serializable {
     /**
-     * Return a log service instance by class
-     * @param clazz the class
+     * Returns a log service instance by name
+     * @param name the name
      * @return a log service instance
      */
-    LogService getLogService(Class<?> clazz);
+    LogService getLogService(String name);
 }

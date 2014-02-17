@@ -14,6 +14,10 @@ public class CommonsLoggingService implements LogService {
         logger = LogFactory.getLog(clz);
     }
 
+    public CommonsLoggingService(String name) {
+        logger = LogFactory.getLog(name);
+    }
+
     @Override
     public boolean isTraceEnabled() {
         return logger.isTraceEnabled();

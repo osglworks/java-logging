@@ -33,17 +33,18 @@ public class LogManager {
 
     private static class Proxy implements Logger {
         private Class<?> c_;
+        private String nm_;
         private volatile LogService l_;
 
-        Proxy(Class<?> clazz) {
-            c_ = clazz;
+        Proxy(String name) {
+            nm_ = name;
         }
 
         LogService impl() {
             if (null == l_) {
                 synchronized (this) {
                     if (null == l_) {
-                        l_ = fact.getLogService(c_);
+                        l_ = fact.getLogService(nm_);
                     }
                 }
             }
@@ -575,9 +576,10 @@ public class LogManager {
     }
 
     private static LogServiceProvider userFact = null; static {
+        final String FQCN = LogManager.class.getName();
         try {
             userFact = _.newInstance("org.osgl.logging.service.TinyLogServiceProvider");
-            userFact.getLogService(LogManager.class);
+            userFact.getLogService(FQCN);
         } catch (Throwable e) {
             e.printStackTrace();
             userFact = null;
@@ -585,7 +587,7 @@ public class LogManager {
         if (null == userFact) {
             try {
                 userFact = _.newInstance("org.osgl.logging.service.Slf4jServiceProvider");
-                userFact.getLogService(LogManager.class);
+                userFact.getLogService(FQCN);
             } catch (Throwable e) {
                 e.printStackTrace();
                 userFact = null;
@@ -594,7 +596,7 @@ public class LogManager {
         if (null == userFact) {
             try {
                 userFact = _.newInstance("org.osgl.logging.service.CommonsLoggingServiceProvider");
-                userFact.getLogService(LogManager.class);
+                userFact.getLogService(FQCN);
             } catch (Throwable e) {
                 e.printStackTrace();
                 userFact = null;
@@ -603,7 +605,7 @@ public class LogManager {
         if (null == userFact) {
             try {
                 userFact = _.newInstance("org.osgl.logging.service.Log4jServiceProvider");
-                userFact.getLogService(LogManager.class);
+                userFact.getLogService(FQCN);
             } catch (Throwable e) {
                 e.printStackTrace();
                 userFact = null;
@@ -615,8 +617,8 @@ public class LogManager {
     private static final LogServiceProvider fact = new LogServiceProvider() {
         private LogServiceProvider defFact = new JDKLogService.Factory();
         @Override
-        public LogService getLogService(Class<?> clazz) {
-            return null == userFact ? defFact.getLogService(clazz) : userFact.getLogService(clazz);
+        public LogService getLogService(String name) {
+            return null == userFact ? defFact.getLogService(name) : userFact.getLogService(name);
         }
     };
 
@@ -626,7 +628,11 @@ public class LogManager {
      * @return the logger instance
      */
     public static Logger get(Class<?> clazz) {
-        return new Proxy(clazz);
+        return new Proxy(clazz.getName());
+    }
+
+    public static Logger get(String name) {
+        return new Proxy(name);
     }
 
     private static volatile Logger def = null;

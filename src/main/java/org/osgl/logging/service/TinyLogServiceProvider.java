@@ -8,7 +8,7 @@ import org.osgl.logging.LogServiceProvider;
  */
 public class TinyLogServiceProvider implements LogServiceProvider {
     @Override
-    public LogService getLogService(Class<?> clazz) {
-        return new TinyLogService(clazz);
+    public LogService getLogService(String name) {
+        return new TinyLogService(name);
     }
 }

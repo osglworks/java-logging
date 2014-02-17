@@ -41,6 +41,11 @@ public class JDKLogService implements LogService {
         logger = java.util.logging.Logger.getLogger(cname);
     }
 
+    public JDKLogService(String name) {
+        cname = name;
+        logger = java.util.logging.Logger.getLogger(name);
+    }
+
     @Override
     public boolean isTraceEnabled() {
         return logger.isLoggable(FINEST);
@@ -150,8 +155,8 @@ public class JDKLogService implements LogService {
 
     public static class Factory implements LogServiceProvider {
         @Override
-        public LogService getLogService(Class<?> clazz) {
-            return new JDKLogService(clazz);
+        public LogService getLogService(String name) {
+            return new JDKLogService(name);
         }
     }
 }

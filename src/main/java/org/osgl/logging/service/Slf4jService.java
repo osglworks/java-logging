@@ -14,6 +14,10 @@ public class Slf4jService implements LogService {
         logger = LoggerFactory.getLogger(clazz);
     }
 
+    public Slf4jService(String name) {
+        logger = LoggerFactory.getLogger(name);
+    }
+
     @Override
     public boolean isTraceEnabled() {
         return logger.isTraceEnabled();
