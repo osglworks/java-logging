@@ -161,43 +161,10 @@ public class LogManager {
             if (level.isEnabled()) level.visit(msg);
         }
 
-        private void log(Level level, String format, Object arg1) {
+        private void log(Level level, String format, Object ... args) {
             if (level.isEnabled()) {
                 try {
-                    format = S.fmt(format, arg1);
-                } catch (Exception e) {
-                    // ignore
-                }
-                level.visit(format);
-            }
-        }
-
-        private void log(Level level, String format, Object arg1, Object arg2) {
-            if (level.isEnabled()) {
-                try {
-                    format = S.fmt(format, arg1, arg2);
-                } catch (Exception e) {
-                    // ignore
-                }
-                level.visit(format);
-            }
-        }
-
-        private void log(Level level, String format, Object arg1, Object arg2, Object arg3) {
-            if (level.isEnabled()) {
-                try {
-                    format = S.fmt(format, arg1, arg2, arg3);
-                } catch (Exception e) {
-                    // ignore
-                }
-                level.visit(format);
-            }
-        }
-
-        private void log(Level level, String format, Object arg1, Object arg2, Object arg3, Object ... args) {
-            if (level.isEnabled()) {
-                try {
-                    format = S.fmt(format, arg1, arg2, arg3, args);
+                    format = S.fmt(format, args);
                 } catch (Exception e) {
                     // ignore
                 }
@@ -209,43 +176,10 @@ public class LogManager {
             if (level.isEnabled()) level.visit(t, msg);
         }
 
-        private void log(Level level, Throwable t, String format, Object arg1) {
+        private void log(Level level, Throwable t, String format, Object... args) {
             if (level.isEnabled()) {
                 try {
-                    format = S.fmt(format, arg1);
-                } catch (Exception e) {
-                    // ignore
-                }
-                level.visit(t, format);
-            }
-        }
-
-        private void log(Level level, Throwable t, String format, Object arg1, Object arg2) {
-            if (level.isEnabled()) {
-                try {
-                    format = S.fmt(format, arg1, arg2);
-                } catch (Exception e) {
-                    // ignore
-                }
-                level.visit(t, format);
-            }
-        }
-
-        private void log(Level level, Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-            if (level.isEnabled()) {
-                try {
-                    format = S.fmt(format, arg1, arg2, arg3);
-                } catch (Exception e) {
-                    // ignore
-                }
-                level.visit(t, format);
-            }
-        }
-
-        private void log(Level level, Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            if (level.isEnabled()) {
-                try {
-                    format = S.fmt(format, arg1, arg2, arg3, args);
+                    format = S.fmt(format, args);
                 } catch (Exception e) {
                     // ignore
                 }
@@ -259,23 +193,8 @@ public class LogManager {
         }
 
         @Override
-        public void trace(String format, Object arg1) {
-            log(trace, format, arg1);
-        }
-
-        @Override
-        public void trace(String format, Object arg1, Object arg2) {
-            log(trace, format, arg1, arg2);
-        }
-
-        @Override
-        public void trace(String format, Object arg1, Object arg2, Object arg3) {
-            log(trace, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void trace(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(trace, format, arg1, arg2, arg3, args);
+        public void trace(String format, Object... args) {
+            log(trace, format, args);
         }
 
         @Override
@@ -284,23 +203,8 @@ public class LogManager {
         }
 
         @Override
-        public void trace(Throwable t, String format, Object arg1) {
-            log(trace, t, format, arg1);
-        }
-
-        @Override
-        public void trace(Throwable t, String format, Object arg1, Object arg2) {
-            log(trace, t, format, arg1, arg2);
-        }
-
-        @Override
-        public void trace(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-            log(trace, t, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void trace(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(trace, t, format, arg1, arg2, arg3, args);
+        public void trace(Throwable t, String format, Object... args) {
+            log(trace, t, format, args);
         }
 
         @Override
@@ -314,23 +218,8 @@ public class LogManager {
         }
 
         @Override
-        public void debug(String format, Object arg1) {
-            log(debug, format, arg1);
-        }
-
-        @Override
-        public void debug(String format, Object arg1, Object arg2) {
-            log(debug, format, arg1, arg2);
-        }
-
-        @Override
-        public void debug(String format, Object arg1, Object arg2, Object arg3) {
-            log(debug, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void debug(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(debug, format, arg1, arg2, arg3, args);
+        public void debug(String format, Object... args) {
+            log(debug, format, args);
         }
 
         @Override
@@ -339,23 +228,8 @@ public class LogManager {
         }
 
         @Override
-        public void debug(Throwable t, String format, Object arg1) {
-            log(debug, t, format, arg1);
-        }
-
-        @Override
-        public void debug(Throwable t, String format, Object arg1, Object arg2) {
-            log(debug, t, format, arg1, arg2);
-        }
-
-        @Override
-        public void debug(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-            log(debug, t, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void debug(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(debug, t, format, arg1, arg2, arg3, args);
+        public void debug(Throwable t, String format, Object... args) {
+            log(debug, t, format, args);
         }
 
         @Override
@@ -369,23 +243,8 @@ public class LogManager {
         }
 
         @Override
-        public void info(String format, Object arg1) {
-            log(info, format, arg1);
-        }
-
-        @Override
-        public void info(String format, Object arg1, Object arg2) {
-            log(info, format, arg1, arg2);
-        }
-
-        @Override
-        public void info(String format, Object arg1, Object arg2, Object arg3) {
-            log(info, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void info(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(info, format, arg1, arg2, arg3, args);
+        public void info(String format, Object... args) {
+            log(info, format, args);
         }
 
         @Override
@@ -394,23 +253,8 @@ public class LogManager {
         }
 
         @Override
-        public void info(Throwable t, String format, Object arg1) {
-            log(info, t, format, arg1);
-        }
-
-        @Override
-        public void info(Throwable t, String format, Object arg1, Object arg2) {
-            log(info, t, format, arg1, arg2);
-        }
-
-        @Override
-        public void info(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-            log(info, t, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void info(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(info, t, format, arg1, arg2, arg3, args);
+        public void info(Throwable t, String format, Object... args) {
+            log(info, t, format, args);
         }
 
         @Override
@@ -424,23 +268,8 @@ public class LogManager {
         }
 
         @Override
-        public void warn(String format, Object arg1) {
-            log(warn, format, arg1);
-        }
-
-        @Override
-        public void warn(String format, Object arg1, Object arg2) {
-            log(warn, format, arg1, arg2);
-        }
-
-        @Override
-        public void warn(String format, Object arg1, Object arg2, Object arg3) {
-            log(warn, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void warn(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(warn, format, arg1, arg2, arg3, args);
+        public void warn(String format, Object... args) {
+            log(warn, format, args);
         }
 
         @Override
@@ -449,23 +278,8 @@ public class LogManager {
         }
 
         @Override
-        public void warn(Throwable t, String format, Object arg1) {
-            log(warn, t, format, arg1);
-        }
-
-        @Override
-        public void warn(Throwable t, String format, Object arg1, Object arg2) {
-            log(warn, t, format, arg1, arg2);
-        }
-
-        @Override
-        public void warn(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-            log(warn, t, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void warn(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(warn, t, format, arg1, arg2, arg3, args);
+        public void warn(Throwable t, String format, Object... args) {
+            log(warn, t, format, args);
         }
 
         @Override
@@ -479,23 +293,8 @@ public class LogManager {
         }
 
         @Override
-        public void error(String format, Object arg1) {
-            log(error, format, arg1);
-        }
-
-        @Override
-        public void error(String format, Object arg1, Object arg2) {
-            log(error, format, arg1, arg2);
-        }
-
-        @Override
-        public void error(String format, Object arg1, Object arg2, Object arg3) {
-            log(error, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void error(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(error, format, arg1, arg2, arg3, args);
+        public void error(String format, Object... args) {
+            log(error, format, args);
         }
 
         @Override
@@ -504,23 +303,8 @@ public class LogManager {
         }
 
         @Override
-        public void error(Throwable t, String format, Object arg1) {
-            log(error, t, format, arg1);
-        }
-
-        @Override
-        public void error(Throwable t, String format, Object arg1, Object arg2) {
-            log(error, t, format, arg1, arg2);
-        }
-
-        @Override
-        public void error(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-            log(error, t, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void error(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(error, t, format, arg1, arg2, arg3, args);
+        public void error(Throwable t, String format, Object... args) {
+            log(error, t, format, args);
         }
 
         @Override
@@ -529,23 +313,8 @@ public class LogManager {
         }
 
         @Override
-        public void fatal(String format, Object arg1) {
-            log(fatal, format, arg1);
-        }
-
-        @Override
-        public void fatal(String format, Object arg1, Object arg2) {
-            log(fatal, format, arg1, arg2);
-        }
-
-        @Override
-        public void fatal(String format, Object arg1, Object arg2, Object arg3) {
-            log(fatal, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void fatal(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(fatal, format, arg1, arg2, arg3, args);
+        public void fatal(String format, Object... args) {
+            log(fatal, format, args);
         }
 
         @Override
@@ -554,23 +323,8 @@ public class LogManager {
         }
 
         @Override
-        public void fatal(Throwable t, String format, Object arg1) {
-            log(fatal, t, format, arg1);
-        }
-
-        @Override
-        public void fatal(Throwable t, String format, Object arg1, Object arg2) {
-            log(fatal, t, format, arg1, arg2);
-        }
-
-        @Override
-        public void fatal(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-            log(fatal, t, format, arg1, arg2, arg3);
-        }
-
-        @Override
-        public void fatal(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-            log(fatal, t, format, arg1, arg2, arg3, args);
+        public void fatal(Throwable t, String format, Object... args) {
+            log(fatal, t, format, args);
         }
 
     }
@@ -664,40 +418,16 @@ public class LogManager {
         def().trace(msg);
     }
 
-    public static void trace(String format, Object arg1) {
-        def().trace(format, arg1);
-    }
-
-    public static void trace(String format, Object arg1, Object arg2) {
-        def().trace(format, arg1, arg2);
-    }
-
-    public static void trace(String format, Object arg1, Object arg2, Object arg3) {
-        def().trace(format, arg1, arg2, arg3);
-    }
-
-    public static void trace(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().trace(format, arg1, arg2, arg3, args);
+    public static void trace(String format, Object... args) {
+        def().trace(format, args);
     }
 
     public static void trace(Throwable t, String msg) {
         def().trace(t, msg);
     }
 
-    public static void trace(Throwable t, String format, Object arg1) {
-        def().trace(t, format, arg1);
-    }
-
-    public static void trace(Throwable t, String format, Object arg1, Object arg2) {
-        def().trace(t, format, arg1, arg2);
-    }
-
-    public static void trace(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-        def().trace(t, format, arg1, arg2, arg3);
-    }
-
-    public static void trace(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().trace(t, format, arg1, arg2, arg3, args);
+    public static void trace(Throwable t, String format, Object... args) {
+        def().trace(t, format, args);
     }
 
     public static boolean isDebugEnabled() {
@@ -708,40 +438,16 @@ public class LogManager {
         def().debug(msg);
     }
 
-    public static void debug(String format, Object arg1) {
-        def().debug(format, arg1);
-    }
-
-    public static void debug(String format, Object arg1, Object arg2) {
-        def().debug(format, arg1, arg2);
-    }
-
-    public static void debug(String format, Object arg1, Object arg2, Object arg3) {
-        def().debug(format, arg1, arg2, arg3);
-    }
-
-    public static void debug(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().debug(format, arg1, arg2, arg3, args);
+    public static void debug(String format, Object... args) {
+        def().debug(format, args);
     }
 
     public static void debug(Throwable t, String msg) {
         def().debug(t, msg);
     }
 
-    public static void debug(Throwable t, String format, Object arg1) {
-        def().debug(t, format, arg1);
-    }
-
-    public static void debug(Throwable t, String format, Object arg1, Object arg2) {
-        def().debug(t, format, arg1, arg2);
-    }
-
-    public static void debug(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-        def().debug(t, format, arg1, arg2, arg3);
-    }
-
-    public static void debug(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().debug(t, format, arg1, arg2, arg3, args);
+    public static void debug(Throwable t, String format, Object... args) {
+        def().debug(t, format, args);
     }
 
     public static boolean isInfoEnabled() {
@@ -752,40 +458,16 @@ public class LogManager {
         def().info(msg);
     }
 
-    public static void info(String format, Object arg1) {
-        def().info(format, arg1);
-    }
-
-    public static void info(String format, Object arg1, Object arg2) {
-        def().info(format, arg1, arg2);
-    }
-
-    public static void info(String format, Object arg1, Object arg2, Object arg3) {
-        def().info(format, arg1, arg2, arg3);
-    }
-
-    public static void info(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().info(format, arg1, arg2, arg3, args);
+    public static void info(String format, Object... args) {
+        def().info(format, args);
     }
 
     public static void info(Throwable t, String msg) {
         def().info(t, msg);
     }
 
-    public static void info(Throwable t, String format, Object arg1) {
-        def().info(t, format, arg1);
-    }
-
-    public static void info(Throwable t, String format, Object arg1, Object arg2) {
-        def().info(t, format, arg1, arg2);
-    }
-
-    public static void info(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-        def().info(t, format, arg1, arg2, arg3);
-    }
-
-    public static void info(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().info(t, format, arg1, arg2, arg3, args);
+    public static void info(Throwable t, String format, Object... args) {
+        def().info(t, format, args);
     }
 
     public static boolean isWarnEnabled() {
@@ -796,40 +478,16 @@ public class LogManager {
         def().warn(msg);
     }
 
-    public static void warn(String format, Object arg1) {
-        def().warn(format, arg1);
-    }
-
-    public static void warn(String format, Object arg1, Object arg2) {
-        def().warn(format, arg1, arg2);
-    }
-
-    public static void warn(String format, Object arg1, Object arg2, Object arg3) {
-        def().warn(format, arg1, arg2, arg3);
-    }
-
-    public static void warn(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().warn(format, arg1, arg2, arg3, args);
+    public static void warn(String format, Object... args) {
+        def().warn(format, args);
     }
 
     public static void warn(Throwable t, String msg) {
         def().warn(t, msg);
     }
 
-    public static void warn(Throwable t, String format, Object arg1) {
-        def().warn(t, format, arg1);
-    }
-
-    public static void warn(Throwable t, String format, Object arg1, Object arg2) {
-        def().warn(t, format, arg1, arg2);
-    }
-
-    public static void warn(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-        def().warn(t, format, arg1, arg2, arg3);
-    }
-
-    public static void warn(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().warn(t, format, arg1, arg2, arg3, args);
+    public static void warn(Throwable t, String format, Object... args) {
+        def().warn(t, format, args);
     }
 
     public static boolean isErrorEnabled() {
@@ -840,79 +498,31 @@ public class LogManager {
         def().error(msg);
     }
 
-    public static void error(String format, Object arg1) {
-        def().error(format, arg1);
-    }
-
-    public static void error(String format, Object arg1, Object arg2) {
-        def().error(format, arg1, arg2);
-    }
-
-    public static void error(String format, Object arg1, Object arg2, Object arg3) {
-        def().error(format, arg1, arg2, arg3);
-    }
-
-    public static void error(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().error(format, arg1, arg2, arg3, args);
+    public static void error(String format, Object... args) {
+        def().error(format, args);
     }
 
     public static void error(Throwable t, String msg) {
         def().error(t, msg);
     }
 
-    public static void error(Throwable t, String format, Object arg1) {
-        def().error(t, format, arg1);
-    }
-
-    public static void error(Throwable t, String format, Object arg1, Object arg2) {
-        def().error(t, format, arg1, arg2);
-    }
-
-    public static void error(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-        def().error(t, format, arg1, arg2, arg3);
-    }
-
-    public static void error(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().error(t, format, arg1, arg2, arg3, args);
+    public static void error(Throwable t, String format, Object... args) {
+        def().error(t, format, args);
     }
 
     public static void fatal(String msg) {
         def().fatal(msg);
     }
 
-    public static void fatal(String format, Object arg1) {
-        def().fatal(format, arg1);
-    }
-
-    public static void fatal(String format, Object arg1, Object arg2) {
-        def().fatal(format, arg1, arg2);
-    }
-
-    public static void fatal(String format, Object arg1, Object arg2, Object arg3) {
-        def().fatal(format, arg1, arg2, arg3);
-    }
-
-    public static void fatal(String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().fatal(format, arg1, arg2, arg3, args);
+    public static void fatal(String format, Object... args) {
+        def().fatal(format, args);
     }
 
     public static void fatal(Throwable t, String msg) {
         def().fatal(t, msg);
     }
 
-    public static void fatal(Throwable t, String format, Object arg1) {
-        def().fatal(t, format, arg1);
-    }
-
-    public static void fatal(Throwable t, String format, Object arg1, Object arg2) {
-        def().fatal(t, format, arg1, arg2);
-    }
-
-    public static void fatal(Throwable t, String format, Object arg1, Object arg2, Object arg3) {
-        def().fatal(t, format, arg1, arg2, arg3);
-    }
-
-    public static void fatal(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object... args) {
-        def().fatal(t, format, arg1, arg2, arg3, args);
+    public static void fatal(Throwable t, String format, Object... args) {
+        def().fatal(t, format, args);
     }
 }

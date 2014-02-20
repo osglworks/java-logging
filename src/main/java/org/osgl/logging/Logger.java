@@ -24,63 +24,21 @@ package org.osgl.logging;
  */
 public interface Logger extends LogService {
 
-    public void trace(String format, Object arg1);
-    public void trace(String format, Object arg1, Object arg2);
-    public void trace(String format, Object arg1, Object arg2, Object arg3);
-    public void trace(String format, Object arg1, Object arg2, Object arg3, Object ... args);
+    public void trace(String format, Object ... args);
+    public void trace(Throwable t, String format, Object ... args);
 
-    public void trace(Throwable t, String format, Object arg1);
-    public void trace(Throwable t, String format, Object arg1, Object arg2);
-    public void trace(Throwable t, String format, Object arg1, Object arg2, Object arg3);
-    public void trace(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object ... args);
+    public void debug(String format, Object ... args);
+    public void debug(Throwable t, String format, Object ... args);
 
-    public void debug(String format, Object arg1);
-    public void debug(String format, Object arg1, Object arg2);
-    public void debug(String format, Object arg1, Object arg2, Object arg3);
-    public void debug(String format, Object arg1, Object arg2, Object arg3, Object ... args);
+    public void info(String format, Object ... args);
+    public void info(Throwable t, String format, Object ... args);
 
-    public void debug(Throwable t, String format, Object arg1);
-    public void debug(Throwable t, String format, Object arg1, Object arg2);
-    public void debug(Throwable t, String format, Object arg1, Object arg2, Object arg3);
-    public void debug(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object ... args);
-
-    public void info(String format, Object arg1);
-    public void info(String format, Object arg1, Object arg2);
-    public void info(String format, Object arg1, Object arg2, Object arg3);
-    public void info(String format, Object arg1, Object arg2, Object arg3, Object ... args);
-
-    public void info(Throwable t, String format, Object arg1);
-    public void info(Throwable t, String format, Object arg1, Object arg2);
-    public void info(Throwable t, String format, Object arg1, Object arg2, Object arg3);
-    public void info(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object ... args);
-
-    public void warn(String format, Object arg1);
-    public void warn(String format, Object arg1, Object arg2);
-    public void warn(String format, Object arg1, Object arg2, Object arg3);
-    public void warn(String format, Object arg1, Object arg2, Object arg3, Object ... args);
-
-    public void warn(Throwable t, String format, Object arg1);
-    public void warn(Throwable t, String format, Object arg1, Object arg2);
-    public void warn(Throwable t, String format, Object arg1, Object arg2, Object arg3);
-    public void warn(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object ... args);
+    public void warn(String format, Object ... args);
+    public void warn(Throwable t, String format, Object ... args);
     
-    public void error(String format, Object arg1);
-    public void error(String format, Object arg1, Object arg2);
-    public void error(String format, Object arg1, Object arg2, Object arg3);
-    public void error(String format, Object arg1, Object arg2, Object arg3, Object ... args);
+    public void error(String format, Object ... args);
+    public void error(Throwable t, String format, Object ... args);
 
-    public void error(Throwable t, String format, Object arg1);
-    public void error(Throwable t, String format, Object arg1, Object arg2);
-    public void error(Throwable t, String format, Object arg1, Object arg2, Object arg3);
-    public void error(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object ... args);
-
-    public void fatal(String format, Object arg1);
-    public void fatal(String format, Object arg1, Object arg2);
-    public void fatal(String format, Object arg1, Object arg2, Object arg3);
-    public void fatal(String format, Object arg1, Object arg2, Object arg3, Object ... args);
-
-    public void fatal(Throwable t, String format, Object arg1);
-    public void fatal(Throwable t, String format, Object arg1, Object arg2);
-    public void fatal(Throwable t, String format, Object arg1, Object arg2, Object arg3);
-    public void fatal(Throwable t, String format, Object arg1, Object arg2, Object arg3, Object ... args);
+    public void fatal(String format, Object ... args);
+    public void fatal(Throwable t, String format, Object ... args);
 }
