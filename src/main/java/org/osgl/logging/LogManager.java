@@ -335,7 +335,6 @@ public class LogManager {
             userFact = _.newInstance("org.osgl.logging.service.TinyLogServiceProvider");
             userFact.getLogService(FQCN);
         } catch (Throwable e) {
-            e.printStackTrace();
             userFact = null;
         }
         if (null == userFact) {
@@ -343,7 +342,6 @@ public class LogManager {
                 userFact = _.newInstance("org.osgl.logging.service.Slf4jServiceProvider");
                 userFact.getLogService(FQCN);
             } catch (Throwable e) {
-                e.printStackTrace();
                 userFact = null;
             }
         }
@@ -352,7 +350,6 @@ public class LogManager {
                 userFact = _.newInstance("org.osgl.logging.service.CommonsLoggingServiceProvider");
                 userFact.getLogService(FQCN);
             } catch (Throwable e) {
-                e.printStackTrace();
                 userFact = null;
             }
         }
@@ -361,11 +358,9 @@ public class LogManager {
                 userFact = _.newInstance("org.osgl.logging.service.Log4jServiceProvider");
                 userFact.getLogService(FQCN);
             } catch (Throwable e) {
-                e.printStackTrace();
                 userFact = null;
             }
         }
-        _.echo("user factory initialized to %s", userFact);
     }
 
     private static final LogServiceProvider fact = new LogServiceProvider() {
