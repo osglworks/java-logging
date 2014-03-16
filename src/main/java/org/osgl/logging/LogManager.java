@@ -29,7 +29,8 @@ import org.osgl.util.S;
 public class LogManager {
 
     // inheritance open to package level
-    LogManager() {}
+    LogManager() {
+    }
 
     private static class Proxy implements Logger {
         private Class<?> c_;
@@ -53,8 +54,10 @@ public class LogManager {
 
         private abstract class Level extends _.Visitor<String> {
             abstract public void visit(Throwable t, String msg);
+
             abstract public boolean isEnabled();
         }
+
         private Level trace = new Level() {
             @Override
             public boolean isEnabled() {
@@ -161,7 +164,7 @@ public class LogManager {
             if (level.isEnabled()) level.visit(msg);
         }
 
-        private void log(Level level, String format, Object ... args) {
+        private void log(Level level, String format, Object... args) {
             if (level.isEnabled()) {
                 try {
                     format = S.fmt(format, args);
@@ -329,13 +332,23 @@ public class LogManager {
 
     }
 
-    private static LogServiceProvider userFact = null; static {
+    private static LogServiceProvider userFact = null;
+
+    static {
         final String FQCN = LogManager.class.getName();
         try {
-            userFact = _.newInstance("org.osgl.logging.service.TinyLogServiceProvider");
+            userFact = _.newInstance("org.osgl.logging.service.Log4jServiceProvider");
             userFact.getLogService(FQCN);
         } catch (Throwable e) {
             userFact = null;
+        }
+        if (null == userFact) {
+            try {
+                userFact = _.newInstance("org.osgl.logging.service.TinyLogServiceProvider");
+                userFact.getLogService(FQCN);
+            } catch (Throwable e) {
+                userFact = null;
+            }
         }
         if (null == userFact) {
             try {
@@ -353,18 +366,11 @@ public class LogManager {
                 userFact = null;
             }
         }
-        if (null == userFact) {
-            try {
-                userFact = _.newInstance("org.osgl.logging.service.Log4jServiceProvider");
-                userFact.getLogService(FQCN);
-            } catch (Throwable e) {
-                userFact = null;
-            }
-        }
     }
 
     private static final LogServiceProvider fact = new LogServiceProvider() {
         private LogServiceProvider defFact = new JDKLogService.Factory();
+
         @Override
         public LogService getLogService(String name) {
             return null == userFact ? defFact.getLogService(name) : userFact.getLogService(name);
@@ -373,6 +379,7 @@ public class LogManager {
 
     /**
      * Get a Logger instance by class
+     *
      * @param clazz the class to get the logger instance
      * @return the logger instance
      */
