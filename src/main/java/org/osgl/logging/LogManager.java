@@ -37,21 +37,6 @@ public class LogManager {
         private String nm_;
         private volatile LogService l_;
 
-        Proxy(String name) {
-            nm_ = name;
-        }
-
-        LogService impl() {
-            if (null == l_) {
-                synchronized (this) {
-                    if (null == l_) {
-                        l_ = fact.getLogService(nm_);
-                    }
-                }
-            }
-            return l_;
-        }
-
         private abstract class Level extends _.Visitor<String> {
             abstract public void visit(Throwable t, String msg);
 
@@ -155,12 +140,31 @@ public class LogManager {
             }
         };
 
+        Proxy(String name) {
+            nm_ = name;
+        }
+
+        LogService impl() {
+            if (null == l_) {
+                synchronized (this) {
+                    if (null == l_) {
+                        l_ = fact.getLogService(nm_);
+                    }
+                }
+            }
+            return l_;
+        }
+
         @Override
         public boolean isTraceEnabled() {
             return impl().isTraceEnabled();
         }
 
         private void log(Level level, String msg) {
+            if (null == level) {
+                System.err.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
+                return;
+            }
             if (level.isEnabled()) level.visit(msg);
         }
 
