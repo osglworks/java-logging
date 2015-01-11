@@ -23,9 +23,6 @@ import org.osgl._;
 import org.osgl.logging.service.JDKLogService;
 import org.osgl.util.S;
 
-/**
- * Created by luog on 14/02/14.
- */
 public class LogManager {
 
     // inheritance open to package level
@@ -161,10 +158,7 @@ public class LogManager {
         }
 
         private void log(Level level, String msg) {
-            if (null == level) {
-                System.err.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
-                return;
-            }
+            assert null != level;
             if (level.isEnabled()) level.visit(msg);
         }
 
@@ -172,14 +166,14 @@ public class LogManager {
             try {
                 String msg = S.fmt(format, args);
                 if (null == level) {
-                    System.err.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
+                    System.out.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
                     return;
                 }
                 if (level.isEnabled()) {
                     level.visit(msg);
                 }
             } catch (Exception e) {
-                e.printStackTrace(System.err);
+                e.printStackTrace(System.out);
             }
         }
 
@@ -191,14 +185,14 @@ public class LogManager {
             try {
                 String msg = S.fmt(format, args);
                 if (null == level) {
-                    System.err.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
+                    System.out.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
                     return;
                 }
                 if (level.isEnabled()) {
                     level.visit(t, msg);
                 }
             } catch (Exception e) {
-                e.printStackTrace(System.err);
+                e.printStackTrace(System.out);
             }
         }
 
