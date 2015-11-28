@@ -19,7 +19,7 @@
 */
 package org.osgl.logging;
 
-import org.osgl._;
+import org.osgl.$;
 import org.osgl.logging.service.JDKLogService;
 import org.osgl.util.S;
 
@@ -34,7 +34,7 @@ public class LogManager {
         private String nm_;
         private volatile LogService l_;
 
-        private abstract class Level extends _.Visitor<String> {
+        private abstract class Level extends $.Visitor<String> {
             abstract public void visit(Throwable t, String msg);
 
             abstract public boolean isEnabled();
@@ -47,7 +47,7 @@ public class LogManager {
             }
 
             @Override
-            public void visit(String s) throws _.Break {
+            public void visit(String s) throws $.Break {
                 impl().trace(s);
             }
 
@@ -63,7 +63,7 @@ public class LogManager {
             }
 
             @Override
-            public void visit(String s) throws _.Break {
+            public void visit(String s) throws $.Break {
                 impl().debug(s);
             }
 
@@ -79,7 +79,7 @@ public class LogManager {
             }
 
             @Override
-            public void visit(String s) throws _.Break {
+            public void visit(String s) throws $.Break {
                 impl().info(s);
             }
 
@@ -95,7 +95,7 @@ public class LogManager {
             }
 
             @Override
-            public void visit(String s) throws _.Break {
+            public void visit(String s) throws $.Break {
                 impl().warn(s);
             }
 
@@ -111,7 +111,7 @@ public class LogManager {
             }
 
             @Override
-            public void visit(String s) throws _.Break {
+            public void visit(String s) throws $.Break {
                 impl().error(s);
             }
 
@@ -127,7 +127,7 @@ public class LogManager {
             }
 
             @Override
-            public void visit(String s) throws _.Break {
+            public void visit(String s) throws $.Break {
                 impl().fatal(s);
             }
 
@@ -343,14 +343,14 @@ public class LogManager {
     static {
         final String FQCN = LogManager.class.getName();
         try {
-            userFact = _.newInstance("org.osgl.logging.service.Log4jServiceProvider");
+            userFact = $.newInstance("org.osgl.logging.service.Log4jServiceProvider");
             userFact.getLogService(FQCN);
         } catch (Throwable e) {
             userFact = null;
         }
         if (null == userFact) {
             try {
-                userFact = _.newInstance("org.osgl.logging.service.TinyLogServiceProvider");
+                userFact = $.newInstance("org.osgl.logging.service.TinyLogServiceProvider");
                 userFact.getLogService(FQCN);
             } catch (Throwable e) {
                 userFact = null;
@@ -358,7 +358,7 @@ public class LogManager {
         }
         if (null == userFact) {
             try {
-                userFact = _.newInstance("org.osgl.logging.service.Slf4jServiceProvider");
+                userFact = $.newInstance("org.osgl.logging.service.Slf4jServiceProvider");
                 userFact.getLogService(FQCN);
             } catch (Throwable e) {
                 userFact = null;
@@ -366,7 +366,7 @@ public class LogManager {
         }
         if (null == userFact) {
             try {
-                userFact = _.newInstance("org.osgl.logging.service.CommonsLoggingServiceProvider");
+                userFact = $.newInstance("org.osgl.logging.service.CommonsLoggingServiceProvider");
                 userFact.getLogService(FQCN);
             } catch (Throwable e) {
                 userFact = null;
