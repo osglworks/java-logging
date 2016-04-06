@@ -164,12 +164,11 @@ public class LogManager {
 
         private void log(Level level, String format, Object... args) {
             try {
-                String msg = S.fmt(format, args);
                 if (null == level) {
-                    System.out.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
                     return;
                 }
                 if (level.isEnabled()) {
+                    String msg = S.fmt(format, args);
                     level.visit(msg);
                 }
             } catch (Exception e) {
@@ -183,12 +182,11 @@ public class LogManager {
 
         private void log(Level level, Throwable t, String format, Object... args) {
             try {
-                String msg = S.fmt(format, args);
                 if (null == level) {
-                    System.out.println("Level is null !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" + msg);
                     return;
                 }
                 if (level.isEnabled()) {
+                    String msg = S.fmt(format, args);
                     level.visit(t, msg);
                 }
             } catch (Exception e) {
