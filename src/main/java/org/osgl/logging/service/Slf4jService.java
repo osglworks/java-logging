@@ -1,21 +1,22 @@
 package org.osgl.logging.service;
 
 import org.osgl.logging.LogService;
+import org.osgl.util.E;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.helpers.NOPLogger;
 
-/**
- * Created by luog on 15/02/14.
- */
 public class Slf4jService implements LogService {
     protected final Logger logger;
 
     public Slf4jService(Class clazz) {
         logger = LoggerFactory.getLogger(clazz);
+        ensureLogger();
     }
 
     public Slf4jService(String name) {
         logger = LoggerFactory.getLogger(name);
+        ensureLogger();
     }
 
     @Override
@@ -101,5 +102,9 @@ public class Slf4jService implements LogService {
     @Override
     public void fatal(Throwable t, String msg) {
         logger.error(msg, t);
+    }
+
+    private void ensureLogger() {
+        E.illegalStateIf(logger instanceof NOPLogger, "cannot initialize Slf4jService");
     }
 }
