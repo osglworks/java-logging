@@ -15,6 +15,7 @@
   ~ under the License.
   -->
 <!-- history
+0.6.0-stylyze - tagged version for stylyze
 0.6.0-SNAPSHOT - upgrade to osgl-tool 0.8-SNAPSHOT
 0.5-SNAPSHOT - upgrade to osgl-tool 0.7.1-SNAPSHOT
 0.4-SNAPSHOT - upgrade to osgl-tool 0.4-SNAPSHOT
@@ -28,7 +29,7 @@
   <groupId>org.osgl</groupId>
   <artifactId>osgl-logging</artifactId>
   <packaging>jar</packaging>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>0.6.0-stylyze-SNAPSHOT</version>
 
   <name>OSGL Logging</name>
   <description>A simple Java logging facade</description>
@@ -104,7 +105,7 @@
     <dependency>
       <groupId>org.osgl</groupId>
       <artifactId>osgl-tool</artifactId>
-      <version>0.9.0-SNAPSHOT</version>
+      <version>0.9.0-stylyze-SNAPSHOT</version>
     </dependency>
 
     <dependency>
