@@ -8,6 +8,8 @@ import org.slf4j.helpers.NOPLogger;
 
 public class Slf4jService implements LogService {
     protected final Logger logger;
+    private org.osgl.logging.Logger.Level level;
+
 
     public Slf4jService(Class clazz) {
         logger = LoggerFactory.getLogger(clazz);
@@ -20,78 +22,103 @@ public class Slf4jService implements LogService {
     }
 
     @Override
+    public void setLevel(org.osgl.logging.Logger.Level level) {
+        this.level = level;
+    }
+
+    @Override
     public boolean isTraceEnabled() {
-        return logger.isTraceEnabled();
+        return (null != level && level.isTraceEnabled()) || logger.isTraceEnabled();
     }
 
     @Override
     public void trace(String msg) {
-        logger.trace(msg);
+        if (isTraceEnabled()) {
+            logger.trace(msg);
+        }
     }
 
     @Override
     public void trace(Throwable t, String msg) {
-        logger.trace(msg, t);
+        if (isTraceEnabled()) {
+            logger.trace(msg, t);
+        }
     }
 
     @Override
     public boolean isDebugEnabled() {
-        return logger.isDebugEnabled();
+        return (null != level && level.isDebugEnabled()) || logger.isDebugEnabled();
     }
 
     @Override
     public void debug(String msg) {
-        logger.debug(msg);
+        if (isDebugEnabled()) {
+            logger.debug(msg);
+        }
     }
 
     @Override
     public void debug(Throwable t, String msg) {
-        logger.debug(msg, t);
+        if (isDebugEnabled()) {
+            logger.debug(msg, t);
+        }
     }
 
     @Override
     public boolean isInfoEnabled() {
-        return logger.isInfoEnabled();
+        return (null != level && level.isInfoEnabled()) || logger.isInfoEnabled();
     }
 
     @Override
     public void info(String msg) {
-        logger.info(msg);
+        if (isInfoEnabled()) {
+            logger.info(msg);
+        }
     }
 
     @Override
     public void info(Throwable t, String msg) {
-        logger.info(msg, t);
+        if (isInfoEnabled()) {
+            logger.info(msg, t);
+        }
     }
 
     @Override
     public boolean isWarnEnabled() {
-        return logger.isWarnEnabled();
+        return (null != level && level.isWarnEnabled()) || logger.isWarnEnabled();
     }
 
     @Override
     public void warn(String msg) {
-        logger.warn(msg);
+        if (isWarnEnabled()) {
+            logger.warn(msg);
+        }
     }
 
     @Override
     public void warn(Throwable t, String msg) {
-        logger.warn(msg, t);
+        if (isWarnEnabled()) {
+            logger.warn(msg, t);
+        }
     }
 
     @Override
     public boolean isErrorEnabled() {
-        return logger.isErrorEnabled();
+        return (null != level && level.isErrorEnabled()) || logger.isErrorEnabled();
     }
 
     @Override
     public void error(String msg) {
-        logger.error(msg);
+        if (isErrorEnabled()) {
+            logger.error(msg);
+        }
     }
 
     @Override
     public void error(Throwable t, String msg) {
-        logger.error(msg, t);
+        if (isErrorEnabled()) {
+            logger.error(msg, t);
+        }
     }
 
     @Override

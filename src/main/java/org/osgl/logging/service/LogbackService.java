@@ -1,19 +1,15 @@
 package org.osgl.logging.service;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import org.osgl.logging.LogService;
 
-public class Log4jService implements LogService {
+public class LogbackService implements LogService {
 
-    protected final org.apache.log4j.Logger logger;
+    protected final Logger logger;
 
-    public Log4jService(Class<?> clz) {
-        logger = Logger.getLogger(clz);
-    }
-
-    public Log4jService(String name) {
-        this.logger = Logger.getLogger(name);
+    public LogbackService(Logger logger) {
+        this.logger = logger;
     }
 
     @Override
@@ -98,12 +94,12 @@ public class Log4jService implements LogService {
 
     @Override
     public void fatal(String msg) {
-        logger.fatal(msg);
+        logger.error(msg);
     }
 
     @Override
     public void fatal(Throwable t, String msg) {
-        logger.fatal(msg, t);
+        logger.error(msg, t);
     }
 
     private Level convert(org.osgl.logging.Logger.Level level) {
@@ -116,10 +112,8 @@ public class Log4jService implements LogService {
                 return Level.INFO;
             case WARN:
                 return Level.WARN;
-            case ERROR:
-                return Level.ERROR;
             default:
-                return Level.FATAL;
+                return Level.ERROR;
         }
     }
 }

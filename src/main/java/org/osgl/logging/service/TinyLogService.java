@@ -1,27 +1,34 @@
 package org.osgl.logging.service;
 
 import org.osgl.logging.LogService;
+import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.Logger;
-import org.pmw.tinylog.LoggingLevel;
+import org.pmw.tinylog.Level;
 
-/**
- * Created by luog on 15/02/14.
- */
 public class TinyLogService implements LogService {
 
     protected int level;
+    private String name;
 
     public TinyLogService(Class<?> clz) {
-        level = Logger.getLoggingLevel(clz.getName()).ordinal();
+        this.name = clz.getName();
+        level = Logger.getLevel(name).ordinal();
     }
 
     public TinyLogService(String name) {
-        level = Logger.getLoggingLevel(name).ordinal();
+        this.name = name;
+        level = Logger.getLevel(name).ordinal();
+    }
+
+    @Override
+    public void setLevel(org.osgl.logging.Logger.Level level) {
+        Level theirLevel = convert(level);
+        Configurator.defaultConfig().level(name, theirLevel);
     }
 
     @Override
     public boolean isTraceEnabled() {
-        return level <= LoggingLevel.TRACE.ordinal();
+        return level <= Level.TRACE.ordinal();
     }
 
     @Override
@@ -36,7 +43,7 @@ public class TinyLogService implements LogService {
 
     @Override
     public boolean isDebugEnabled() {
-        return level <= LoggingLevel.DEBUG.ordinal();
+        return level <= Level.DEBUG.ordinal();
     }
 
     @Override
@@ -51,7 +58,7 @@ public class TinyLogService implements LogService {
 
     @Override
     public boolean isInfoEnabled() {
-        return level >= LoggingLevel.INFO.ordinal();
+        return level >= Level.INFO.ordinal();
     }
 
     @Override
@@ -66,7 +73,7 @@ public class TinyLogService implements LogService {
 
     @Override
     public boolean isWarnEnabled() {
-        return level <= LoggingLevel.WARNING.ordinal();
+        return level <= Level.WARNING.ordinal();
     }
 
     @Override
@@ -81,7 +88,7 @@ public class TinyLogService implements LogService {
 
     @Override
     public boolean isErrorEnabled() {
-        return level <= LoggingLevel.ERROR.ordinal();
+        return level <= Level.ERROR.ordinal();
     }
 
     @Override
@@ -102,5 +109,20 @@ public class TinyLogService implements LogService {
     @Override
     public void fatal(Throwable t, String msg) {
         Logger.error(t, msg);
+    }
+
+    private Level convert(org.osgl.logging.Logger.Level level) {
+        switch (level) {
+            case TRACE:
+                return Level.TRACE;
+            case DEBUG:
+                return Level.DEBUG;
+            case INFO:
+                return Level.INFO;
+            case WARN:
+                return Level.WARNING;
+            default:
+                return Level.ERROR;
+        }
     }
 }

@@ -21,9 +21,6 @@ package org.osgl.logging;
 
 import java.io.Serializable;
 
-/**
- * Created by luog on 14/02/14.
- */
 public interface LogServiceProvider extends Serializable {
     /**
      * Returns a log service instance by name

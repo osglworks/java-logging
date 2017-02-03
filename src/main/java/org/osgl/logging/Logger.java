@@ -19,10 +19,9 @@
 */
 package org.osgl.logging;
 
-/**
- * Created by luog on 14/02/14.
- */
 public interface Logger extends LogService {
+
+    public void setLevel(Level level);
 
     public void trace(String format, Object ... args);
     public void trace(Throwable t, String format, Object ... args);
@@ -41,4 +40,37 @@ public interface Logger extends LogService {
 
     public void fatal(String format, Object ... args);
     public void fatal(Throwable t, String format, Object ... args);
+
+    enum Level {
+        FATAL,
+        ERROR,
+        WARN,
+        INFO,
+        DEBUG,
+        TRACE;
+
+        public boolean isTraceEnabled() {
+            return this.ordinal() >= TRACE.ordinal();
+        }
+
+        public boolean isDebugEnabled() {
+            return this.ordinal() > TRACE.ordinal();
+        }
+
+        public boolean isInfoEnabled() {
+            return this.ordinal() > DEBUG.ordinal();
+        }
+
+        public boolean isWarnEnabled() {
+            return this.ordinal() > INFO.ordinal();
+        }
+
+        public boolean isErrorEnabled() {
+            return this.ordinal() > WARN.ordinal();
+        }
+
+        public boolean isFatalEnabled() {
+            return true;
+        }
+    }
 }

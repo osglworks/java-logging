@@ -21,6 +21,7 @@ package org.osgl.logging.service;
 
 import org.osgl.logging.LogService;
 import org.osgl.logging.LogServiceProvider;
+import org.osgl.logging.Logger;
 
 import java.util.logging.Level;
 
@@ -44,6 +45,11 @@ public class JDKLogService implements LogService {
     public JDKLogService(String name) {
         cname = name;
         logger = java.util.logging.Logger.getLogger(name);
+    }
+
+    @Override
+    public void setLevel(Logger.Level level) {
+        logger.setLevel(convert(level));
     }
 
     @Override
@@ -151,6 +157,23 @@ public class JDKLogService implements LogService {
             method = caller.getMethodName();
         }
         logger.logp(l, cname, method, m);
+    }
+
+    private Level convert(Logger.Level level) {
+        switch (level) {
+            case TRACE:
+                return Level.FINEST;
+            case DEBUG:
+                return Level.FINE;
+            case INFO:
+                return Level.INFO;
+            case WARN:
+                return Level.WARNING;
+            case ERROR:
+                return Level.SEVERE;
+            default:
+                return Level.SEVERE;
+        }
     }
 
     public static class Factory implements LogServiceProvider {

@@ -21,30 +21,28 @@ package org.osgl.logging;
 
 import java.io.Serializable;
 
-/**
- * Created by luog on 15/02/14.
- */
 public interface LogService extends Serializable {
-    public boolean isTraceEnabled();
-    public void trace(String msg);
-    public void trace(Throwable t, String msg);
+    void setLevel(Logger.Level level);
+    boolean isTraceEnabled();
+    void trace(String msg);
+    void trace(Throwable t, String msg);
 
-    public boolean isDebugEnabled();
-    public void debug(String msg);
-    public void debug(Throwable t, String msg);
+    boolean isDebugEnabled();
+    void debug(String msg);
+    void debug(Throwable t, String msg);
 
-    public boolean isInfoEnabled();
-    public void info(String msg);
-    public void info(Throwable t, String msg);
+    boolean isInfoEnabled();
+    void info(String msg);
+    void info(Throwable t, String msg);
 
-    public boolean isWarnEnabled();
-    public void warn(String msg);
-    public void warn(Throwable t, String msg);
+    boolean isWarnEnabled();
+    void warn(String msg);
+    void warn(Throwable t, String msg);
 
-    public boolean isErrorEnabled();
-    public void error(String msg);
-    public void error(Throwable t, String msg);
+    boolean isErrorEnabled();
+    void error(String msg);
+    void error(Throwable t, String msg);
 
-    public void fatal(String msg);
-    public void fatal(Throwable t, String msg);
+    void fatal(String msg);
+    void fatal(Throwable t, String msg);
 }

@@ -153,6 +153,11 @@ public class LogManager {
         }
 
         @Override
+        public void setLevel(Logger.Level level) {
+            impl().setLevel(level);
+        }
+
+        @Override
         public boolean isTraceEnabled() {
             return impl().isTraceEnabled();
         }
@@ -341,7 +346,7 @@ public class LogManager {
     static {
         final String FQCN = LogManager.class.getName();
         try {
-            userFact = $.newInstance("org.osgl.logging.service.Slf4jServiceProvider");
+            userFact = $.newInstance("org.osgl.logging.service.LogbackServiceProvider");
             userFact.getLogService(FQCN);
         } catch (Throwable e) {
             userFact = null;
@@ -357,6 +362,14 @@ public class LogManager {
         if (null == userFact) {
             try {
                 userFact = $.newInstance("org.osgl.logging.service.TinyLogServiceProvider");
+                userFact.getLogService(FQCN);
+            } catch (Throwable e) {
+                userFact = null;
+            }
+        }
+        if (null == userFact) {
+            try {
+                userFact = $.newInstance("org.osgl.logging.service.Slf4jServiceProvider");
                 userFact.getLogService(FQCN);
             } catch (Throwable e) {
                 userFact = null;
