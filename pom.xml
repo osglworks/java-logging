@@ -36,7 +36,7 @@
   <groupId>org.osgl</groupId>
   <artifactId>osgl-logging</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
 
   <name>OSGL Logging</name>
   <description>A simple Java logging facade</description>
