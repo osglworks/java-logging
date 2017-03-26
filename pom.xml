@@ -15,6 +15,10 @@
   ~ under the License.
   -->
 <!-- history
+1.0.2
+- Take out version range (See https://issues.apache.org/jira/browse/MNG-3092)
+1.0.1
+- Use version range for osgl dependencies
 1.0.0
 - base line from 0.7.0
 0.7.0
@@ -34,7 +38,7 @@
   <groupId>org.osgl</groupId>
   <artifactId>osgl-logging</artifactId>
   <packaging>jar</packaging>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.0.3-SNAPSHOT</version>
 
   <name>OSGL Logging</name>
   <description>A simple Java logging facade</description>
@@ -55,7 +59,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <osgl-tool.version>1.0.0</osgl-tool.version>
+    <osgl-tool.version>1.0.1</osgl-tool.version>
     <maven.test.skip>false</maven.test.skip>
   </properties>
 
