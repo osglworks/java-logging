@@ -1,5 +1,8 @@
 # OSGL logging change log
 
+1.4.0 19/Apr/2019
+* update to osgl-tool-1.19.2
+
 1.3.0 30/Oct/2018
 * update to osgl-tool-1.18.0
 
