@@ -20,7 +20,7 @@
 
   <artifactId>osgl-logging</artifactId>
   <packaging>jar</packaging>
-  <version>1.5.0-SNAPSHOT</version>
+  <version>1.5.0</version>
 
   <name>OSGL Logging</name>
   <description>A simple Java logging facade</description>
